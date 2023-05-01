@@ -4,8 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:background="@color/login">
+    android:background="@color/login"
+    tools:context=".Login">
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="24dp"
+        android:text="Creat new Account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_firstname" />
 
     <TextView
         android:id="@+id/login_here"
@@ -21,50 +34,57 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/edit_text_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
         android:autoText="false"
         android:background="@color/white"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="text|textEmailAddress|textNoSuggestions"
+        android:maxLines="1"
         android:minHeight="48dp"
         android:paddingStart="10dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_here" />
 
     <EditText
-        android:id="@+id/etFirstName"
+        android:id="@+id/edit_text_firstname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="24dp"
         android:autoText="false"
         android:background="@color/white"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="text|textPassword|textNoSuggestions"
+        android:maxLines="1"
         android:minHeight="48dp"
+        android:minLines="1"
         android:paddingStart="10dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_email" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="346dp"
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
         android:layout_height="55dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="64dp"
+        android:layout_marginEnd="24dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_firstname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

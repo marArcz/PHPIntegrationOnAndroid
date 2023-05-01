@@ -1,9 +1,8 @@
 package com.example.phpintegrationonandroid;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 import com.example.phpintegrationonandroid.Models.User;
 import com.example.phpintegrationonandroid.Models.UserAuthResponse;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +20,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnSave;
+    private Button btnSave, btnLogin;
     private EditText etFirstName,etMiddleName,etLastName,etEmail,etPassword,etConfirmPassword;
 
     @Override
@@ -34,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
         // Initialize objects;
 
         btnSave = findViewById(R.id.btnRegister);
-        etFirstName = findViewById(R.id.etFirstName);
-        etMiddleName = findViewById(R.id.etMiddleName);
-        etLastName = findViewById(R.id.etLastName);
-        etEmail = findViewById(R.id.etEmail);
+        btnLogin = findViewById(R.id.btn_login);
+        etFirstName = findViewById(R.id.edit_text_firstname);
+        etMiddleName = findViewById(R.id.edit_text_middlename);
+        etLastName = findViewById(R.id.edit_text_lastname);
+        etEmail = findViewById(R.id.edit_text_email);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
 
@@ -45,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
               OnSignUp();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
     }
@@ -65,23 +70,22 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserAuthResponse>() {
             @Override
             public void onResponse(Call<UserAuthResponse> call, Response<UserAuthResponse> response) {
-                if(response.body().isSuccess()){
-                    showSnackbar(response.body().getMessage(), btnSave);
-                    AppManager.saveUser(response.body().getUser(),getApplicationContext());
+
+                if(response.body() == null){
+                    Toast.makeText(MainActivity.this, "Server response is empty!", Toast.LENGTH_SHORT).show();
                 }else{
-                    showSnackbar(response.message(), btnSave);
+                    Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    if(response.body().isSuccess()){
+                        startActivity(new Intent(MainActivity.this, Login.class));
+                    }
                 }
             }
             @Override
             public void onFailure(Call<UserAuthResponse> call, Throwable t) {
                 t.printStackTrace();
-                showSnackbar(  t.getMessage(),btnSave);
+                Toast.makeText(MainActivity.this, t.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
-    }
-    private void showSnackbar(String message,View view){
-        Snackbar snackbar = Snackbar.make(view,message, Snackbar.LENGTH_LONG);
-        snackbar.show();
     }
 }

@@ -14,7 +14,6 @@ public class RetrofitClient {
                 .setLenient()
                 .create();
 
-
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)

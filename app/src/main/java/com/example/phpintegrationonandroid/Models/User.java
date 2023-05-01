@@ -1,5 +1,7 @@
 package com.example.phpintegrationonandroid.Models;
 
+import retrofit2.http.Field;
+
 public class User {
     private int id;
     private String firstname;
