@@ -59,12 +59,13 @@ public class Login extends AppCompatActivity {
                     if(response.body() == null){
                         Toast.makeText(Login.this, "Server Response is empty!", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
                         if(response.body().isSuccess()){
+                            Toast.makeText(Login.this, "Welcome to your account!", Toast.LENGTH_SHORT).show();
                             AppManager.saveUser(response.body().getUser(),getApplicationContext());
                             startActivity(new Intent(Login.this, AccountActivity.class));
                             finish();
+                        }else{
+                            Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

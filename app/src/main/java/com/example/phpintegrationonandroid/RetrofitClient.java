@@ -7,7 +7,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    public static final String SERVER_URL = "http://192.168.1.18/android-retrofit-backend-master/";
+    public static final String SERVER_URL = "http://192.168.254.193/android-crud/";
     public static Retrofit getRetrofit(){
 
         Gson gson = new GsonBuilder()

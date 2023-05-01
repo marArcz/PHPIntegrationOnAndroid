@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="login">#D70f64</color>
+    <color name="dark">#2C2C2C</color>
+    <color name="yellow">#D8AC0F</color>
 </resources>

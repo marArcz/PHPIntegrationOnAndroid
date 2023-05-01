@@ -1,5 +1,6 @@
 package com.example.phpintegrationonandroid;
 
+import com.example.phpintegrationonandroid.Models.APIResponse;
 import com.example.phpintegrationonandroid.Models.User;
 import com.example.phpintegrationonandroid.Models.UserAuthResponse;
 import com.google.gson.JsonObject;
@@ -24,8 +25,9 @@ public interface AccountAPI {
     @POST("users/update.php")
     Call<UserAuthResponse> updateUser(@Body User user);
 
+    @FormUrlEncoded
     @POST("users/delete.php")
-    Call<Response> deleteUser(@Field("id") int userId);
+    Call<APIResponse> deleteUser(@Field("id") int userId);
 
     @FormUrlEncoded
     @POST("users/change-password.php")
@@ -35,4 +37,5 @@ public interface AccountAPI {
             @Field("new_password") String newPassword,
             @Field("confirm_password") String confirmPassword
     );
+
 }
